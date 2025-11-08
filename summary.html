@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Summary - Personal Finance Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1d976c, #93f9b9);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 30px 40px;
+      width: 450px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      color: #fff;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+
+    .summary-item {
+      font-size: 18px;
+      margin: 15px 0;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      font-weight: 500;
+    }
+
+    .income { color: #27ae60; }
+    .expense { color: #e74c3c; }
+    .balance { color: #2980b9; }
+
+    .back-button {
+      margin-top: 25px;
+    }
+
+    .back-button a {
+      text-decoration: none;
+      color: white;
+      background-color: #34495e;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .back-button a:hover {
+      background-color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>📊 Financial Summary</h2>
+    <div id="summary"></div>
+
+    <div class="back-button">
+      <a href="home.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const summaryDiv = document.getElementById("summary");
+    const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+    let income = 0, expense = 0;
+    transactions.forEach(tx => {
+      if (tx.type === "income") income += tx.amount;
+      else expense += tx.amount;
+    });
+    const balance = income - expense;
+
+    summaryDiv.innerHTML = `
+      <div class="summary-item income">📈 Total Income: ₹${income.toFixed(2)}</div>
+      <div class="summary-item expense">📉 Total Expenses: ₹${expense.toFixed(2)}</div>
+      <div class="summary-item balance">💰 Balance: ₹${balance.toFixed(2)}</div>
+    `;
+  </script>
+
+</body>
+</html>

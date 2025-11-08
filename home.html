@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Personal Finance Tracker - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #acb6e5);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 30px;
+      width: 750px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    button {
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      background-color: #2ecc71;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
+    button:hover { background-color: #27ae60; transform: scale(1.03); }
+    .list {
+      background: #fff;
+      padding: 15px;
+      border-radius: 12px;
+      max-height: 250px;
+      overflow-y: auto;
+      margin-top: 10px;
+    }
+    .list div {
+      border-bottom: 1px solid #ccc;
+      padding: 8px 0;
+      font-size: 15px;
+    }
+    .list div:last-child { border: none; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2 id="welcomeText">👋 Welcome, Navin</h2>
+    <div class="grid">
+      <button onclick="window.location.href='add_transaction.html'"><i class="fas fa-plus-circle"></i> Add</button>
+      <button onclick="window.location.href='earnings.html'"><i class="fas fa-chart-line"></i> Earnings</button>
+      <button onclick="window.location.href='expense.html'"><i class="fas fa-arrow-circle-down"></i> Expenses</button>
+      <button onclick="window.location.href='all_transactions.html'"><i class="fas fa-receipt"></i> All Transactions</button>
+      <button onclick="window.location.href='summary.html'"><i class="fas fa-chart-pie"></i> Summary</button>
+      <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+    <div class="list" id="transactionList">
+      <strong>💡 Tip:</strong> Click buttons above to view transactions.
+    </div>
+  </div>
+
+<script>
+  function logout() {
+    alert("Logged out successfully!");
+    window.location.href = "login.html";
+  }
+</script>
+
+</body>
+</html>

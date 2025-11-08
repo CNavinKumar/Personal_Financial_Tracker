@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 400px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      padding: 35px;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 25px;
+    }
+
+    .input-icon {
+      position: relative;
+      margin-top: 15px;
+    }
+
+    .input-icon i {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: #888;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 35px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 5px;
+      background-color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      margin-top: 25px;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .register-btn {
+      background-color: #27ae60;
+      color: white;
+    }
+
+    .register-btn:hover {
+      background-color: #1e8449;
+    }
+
+    .clear-btn {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .clear-btn:hover {
+      background-color: #c0392b;
+    }
+
+    .login-btn {
+      background-color: #2980b9;
+      color: white;
+    }
+
+    .login-btn:hover {
+      background-color: #1c5985;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📝 Register Now</h2>
+
+    <form id="registerForm">
+      <div class="input-icon">
+        <i class="fas fa-user"></i>
+        <input type="text" id="username" placeholder="Username" required>
+      </div>
+
+      <div class="input-icon">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="email" placeholder="Email" required>
+      </div>
+
+      <div class="input-icon">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+
+      <div class="input-icon">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="register-btn"><i class="fas fa-user-plus"></i> Register</button>
+        <button type="button" class="clear-btn" onclick="clearForm()"><i class="fas fa-eraser"></i> Clear</button>
+        <button type="button" class="login-btn" onclick="redirectToLogin()"><i class="fas fa-sign-in-alt"></i> Login</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (!username || !email || !password || !confirmPassword) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      alert("Registration successful! (Simulation only)");
+      window.location.href = "login.html";
+    });
+
+    function clearForm() {
+      document.getElementById("registerForm").reset();
+    }
+
+    function redirectToLogin() {
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

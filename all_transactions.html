@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>All Transactions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 30px;
+      width: 600px;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .transaction {
+      background-color: rgba(255, 255, 255, 0.3);
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      color: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+    }
+
+    .transaction span {
+      font-weight: bold;
+    }
+
+    .income {
+      color: #2ecc71;
+    }
+
+    .expense {
+      color: #e74c3c;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .back-button a {
+      text-decoration: none;
+      color: white;
+      background-color: #2c3e50;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .back-button a:hover {
+      background-color: #1a242f;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>📋 All Transactions</h2>
+    <div id="list"></div>
+
+    <div class="back-button">
+      <a href="home.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const list = document.getElementById("list");
+    const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+    if (transactions.length === 0) {
+      list.innerHTML = "<p style='color: white;'>No transactions found.</p>";
+    } else {
+      transactions.forEach(tx => {
+        list.innerHTML += `
+          <div class="transaction">
+            <div>
+              <span class="${tx.type === 'income' ? 'income' : 'expense'}">
+                ${tx.type.toUpperCase()} - ₹${tx.amount}
+              </span><br>
+              ${tx.description}
+            </div>
+            <div>${tx.date}</div>
+          </div>
+        `;
+      });
+    }
+  </script>
+
+</body>
+</html>
